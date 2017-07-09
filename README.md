@@ -1,7 +1,10 @@
 ## Chat-Service
 
-### Test
-Run the Main.class to test the service.
+### Unit tests
+mvn clean install && mvn test
+
+### Integration tests
+mvn clean install && mvn exec:java -e
 
 ### Service implementation
 Implementation is in com.atlassian.hipchat.service.impl.ChatServiceImpl which is called from AWS lambda ChatServiceLambda.

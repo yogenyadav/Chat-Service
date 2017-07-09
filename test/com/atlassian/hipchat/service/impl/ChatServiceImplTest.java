@@ -65,6 +65,18 @@ public class ChatServiceImplTest {
         assertTrue(jsonObject.similar(getExpected()));
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testInputValidation() throws IOException {
+        ChatServiceImpl chatService = new ChatServiceImpl(
+                ImmutableMap.of(
+                        linksParser, linksJSONSerializer,
+                        mentionsParser, mentionsJSONSerializer,
+                        emoticonsParser, emoticonsJSONSerializer
+                )
+        );
+        chatService.getChatContents(null);
+    }
+
     private JSONObject getExpected() {
         return new JSONObject()
               .put("mentions", new JSONArray().put("chris").put("matt"))

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import com.atlassian.hipchat.service.ChatService;
 import com.atlassian.hipchat.service.parsers.MessageParser;
 import com.atlassian.hipchat.service.serializers.MessageSerializer;
+import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.tuple.Pair;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,7 +27,8 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    public JSONObject getChatContents(String message) throws IOException {
+    public JSONObject getChatContents(final String message) throws IOException {
+        Preconditions.checkNotNull(message, "message cannot be null");
         JSONObject jsonObject = new JSONObject();
         for (Map.Entry<MessageParser, MessageSerializer> entry : this.parsers.entrySet()) {
             Pair<String, JSONArray> pair = entry.getValue().serialize(entry.getKey().parse(message));

@@ -10,6 +10,7 @@
 
     <build>
         <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>test</testSourceDirectory>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -17,6 +18,21 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>IntegrationTest</mainClass>
                 </configuration>
             </plugin>
         </plugins>
