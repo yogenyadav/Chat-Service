@@ -21,6 +21,10 @@ public class EmoticonsParser implements MessageParser {
         List<String> mentions = new ArrayList<>();
         while (m.find()) {
             for (int i = 1; i <= m.groupCount(); i++) {
+                String emoticon = m.group(i);
+                if (emoticon.length() > 15) {
+                    throw new IllegalArgumentException(String.format("%s is more than 15 char long", emoticon));
+                }
                 mentions.add(m.group(i));
             }
         }

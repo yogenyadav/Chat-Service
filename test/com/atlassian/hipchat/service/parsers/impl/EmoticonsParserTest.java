@@ -18,4 +18,11 @@ public class EmoticonsParserTest {
         List<String> mentions = parser.parse(str);
         assertThat(mentions, is(ImmutableList.of("text1", "text2")));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void test_emoticon_too_long(){
+        String str = "aa aa (text1) bb bb (verylongemoticon)";
+        EmoticonsParser parser = new EmoticonsParser();
+        List<String> mentions = parser.parse(str);
+    }
 }
